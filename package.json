@@ -12,7 +12,8 @@
     "sass-loader": "^7.1.0"
   },
   "scripts": {
-    "dev": "nuxt"
+    "dev": "nuxt",
+    "generate": "nuxt generate"
   },
   "author": "",
   "license": "ISC"
