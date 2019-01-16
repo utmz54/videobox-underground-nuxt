@@ -1,0 +1,19 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bulma": "^0.7.2",
+    "nuxt": "^2.3.4"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0"
+  },
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "author": "",
+  "license": "ISC"
+}
