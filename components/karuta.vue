@@ -15,6 +15,13 @@
 </template>
 <script>
 export default {
+  head () {
+    return {
+    link: [
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+JP' }
+    ]
+    } 
+  },
   computed: {
     lines() {
       return this.karuta.text.split("　");
