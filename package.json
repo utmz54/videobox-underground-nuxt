@@ -8,12 +8,19 @@
     "nuxt": "^2.3.4"
   },
   "devDependencies": {
+    "imagemin": "^6.1.0",
+    "imagemin-cli": "^4.0.0",
+    "imagemin-gifsicle": "^6.0.1",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^7.0.0",
+    "imagemin-svgo": "^7.0.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0"
   },
   "scripts": {
     "dev": "nuxt",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "imagemin": "imagemin static-src/* --out-dir=static --plugin=pngquant"
   },
   "author": "",
   "license": "ISC"

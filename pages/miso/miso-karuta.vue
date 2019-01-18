@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import karutas from "~/pages"
 import karuta from "~/components/karuta";
 export default {
   components: {
