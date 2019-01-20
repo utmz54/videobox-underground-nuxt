@@ -80,7 +80,7 @@ export default {
       src: "/miso-basic.png",
       item: {
         head: "あ",
-        text: "アイム ミソシタ\\n今朝 クソした",
+        text: "アイム ミソシタ\\n今朝 クソした ",
         src: "/miso-old.png",
         href: "#"
       }
