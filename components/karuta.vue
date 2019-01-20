@@ -24,7 +24,9 @@ export default {
   },
   computed: {
     lines() {
-      return this.karuta.text.split("　");
+      if(this.karuta.text)
+      return this.karuta.text.split("\n");
+      else [];
     },
     src_replaced() {
       if (this.karuta.src) return this.karuta.src;
