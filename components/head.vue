@@ -6,7 +6,6 @@
     <div id="navbarBasicExample" class="navbar-menu is-active">
       <div class="navbar-start">
         <nuxt-link class="navbar-item" to="/miso/miso-karuta">ミソカルタ</nuxt-link>
-        <nuxt-link class="navbar-item" to="/miso/make">ミソカルタメーカー</nuxt-link>
       </div>
     </div>
   </nav>
