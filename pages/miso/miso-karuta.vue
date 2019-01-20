@@ -284,6 +284,7 @@ export default {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+ width: 100%;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;

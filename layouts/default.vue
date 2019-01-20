@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <HeadNav/>
-    <nuxt/>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <nuxt/>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script>
