@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      menuActive: false
+      menuActive: true
     };
   },
   methods: {
