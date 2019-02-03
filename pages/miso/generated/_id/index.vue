@@ -72,7 +72,6 @@ export default {
         .then(res => {
           if (res.exists) {
             this.karuta = res.data().message;
-            //console.log(this.karuta);
             //console.log(`https://firebasestorage.googleapis.com/v0/b/videobox-underground.appspot.com/o/${encodeURIComponent(`misokaruta-image/${this.$route.params.id}.png`)}?alt=media`);
             this.isLoading = false;
           } else {
