@@ -2,6 +2,7 @@ module.exports = {
     // css: [
     //   'bulma',
     // ],
+    mode: 'universal',
     link: [
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+JP' },
       { rel: 'stylesheet', href: 'https://cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css' }
