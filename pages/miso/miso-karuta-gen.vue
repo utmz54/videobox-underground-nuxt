@@ -1,16 +1,16 @@
 <template>
-  <div class="root columns">
-    <div class="column">
+  <div class="root">
+    <b-loading :active.sync="isLoading"></b-loading>
+    <div class="container">
       <div class="centered">
         <karuta v-bind:karuta="karuta" ref="karuta_gen"/>
-        <img :src="output">
       </div>
     </div>
-    <div class="column">
+    <div class="container">
       <b-field label="頭文字">
         <b-input v-model="karuta.head" maxlength="1"></b-input>
       </b-field>
-      <b-field label="本文を書いてね">
+      <b-field label="本文">
         <b-input type="textarea" v-model="karuta.text"></b-input>
       </b-field>
       <b-field label="絵">
@@ -18,46 +18,36 @@
           <option v-for="option in images" :value="option.src" :key="option.src">{{ option.text }}</option>
         </b-select>
       </b-field>
-      <button class="button is-link" @click="submit">送信</button>
+      <button class="button is-info" @click="submit">
+        <b-icon icon="twitter"></b-icon>
+        <span>Tweet</span>
+      </button>
+      <b-notification
+        auto-close
+        type="is-danger"
+        :active.sync="isNotWritten"
+      >入力欄が空欄です。本文と頭文字の入力欄をお確かめください。</b-notification>
     </div>
   </div>
 </template>
 <script>
-import karuta from "~/components/karuta";
-import firebase from "firebase";
-import domtoimage from 'dom-to-image';
-
-const config = {
-  apiKey: "AIzaSyDrboaVdgyIZvJ0KtrXUEJhJNeBka5aKAE",
-  authDomain: "videobox-underground.firebaseapp.com",
-  databaseURL: "https://videobox-underground.firebaseio.com",
-  projectId: "videobox-underground",
-  storageBucket: "videobox-underground.appspot.com",
-  messagingSenderId: "760137609377"
-};
+import karuta from "~/components/karuta-no-link";
+import firebase from '~/plugins/firebase'
+import domtoimage from "dom-to-image";
 
 export default {
   components: {
     karuta
   },
-  beforeMount() {
-    firebase.initializeApp(config);
-    
-  },
   methods: {
-    async vue_html2canvas(el, options = {}) {
-      const { type } = options;
-      const canvas = await html2canvas(el, options);
-      if (type && type === "dataURL") {
-        return canvas.toDataURL();
-      } else {
-        console.warn(
-          "Vue Html2Canvas Warn: Invalid option type. Use 'dataURL' instead. Returning canvas."
-        );
-        return canvas;
-      }
+    popup() {
+      this.isNotWritten = true;
     },
     async submit() {
+      if (!this.karuta.text | !this.karuta.head) {
+        this.popup();
+        return;
+      }
       const el = this.$refs.karuta_gen.$el;
       el.style.fontFeatureSettings = '"liga" 0';
       console.debug(el);
@@ -68,31 +58,47 @@ export default {
         type: "dataURL"
       };
       this.output = await domtoimage.toPng(el);
-      //await this.upload(this.output);
+      await this.upload(this.output);
     },
     async upload(data) {
       const db = firebase.firestore();
       const sRef = firebase.storage().ref();
-      const name = Math.random().toString(36).slice(-8);
-      alert(name)
-      const fileRef = sRef.child(`${name}.png`);
+      const name = Math.random()
+        .toString(36)
+        .slice(-8)+Math.random()
+        .toString(36)
+        .slice(-8);
+      const fileRef = sRef.child(`misokaruta-image/${name}.png`);
+      this.isLoading=true;
       // Cloud Storageにアップロード
-        fileRef.putString(data, 'data_url').then((snapshot) => {
+      fileRef
+        .putString(data, "data_url")
+        .then(snapshot => {
           // Firestoreに保存しておく
-          const card = db.collection('cards').doc(name)
+          const card = db.collection("misokaruta").doc(name);
 
-          return card.set({
-            message: this.description
-          }, { merge: false })
-        }).then(docRef => {
-          console.log(docRef)
-        }).catch(err => {
-          console.error(err)
+          return card.set(
+            {
+              message: this.karuta
+            },
+            { merge: false }
+          );
         })
+        .then(docRef => {
+          console.log(docRef);
+          this.isLoading=false;
+          this.$router.push(`/miso/generated/${name}`)
+        })
+        .catch(err => {
+          this.isLoading=false;
+          console.error(err);
+        });
     }
   },
   data() {
     return {
+      isNotWritten: false,
+      isLoading:false,
       output: null,
       images: [
         { src: "/miso-basic.png", text: "ミソシタ" },
@@ -100,8 +106,8 @@ export default {
         { src: "/bool.png", text: "BOOL氏" }
       ],
       karuta: {
-        head: "あ",
-        text: "アイム ミソシタ\n今朝 クソした",
+        head: "",
+        text: "",
         src: "/miso-old.png",
         href: "#"
       }
