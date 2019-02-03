@@ -3,7 +3,7 @@
     <b-loading :active.sync="isLoading"></b-loading>
     <div class="container">
       <div class="centered">
-        <h1>たぶんできました</h1>
+        <h1>カルタができました。遊んでくれてありがとうございます。</h1>
       </div>
     </div>
     <div class="container">
@@ -17,7 +17,7 @@
           <b-icon icon="twitter"></b-icon>
           <span>Tweet</span>
         </a>
-        <b-notification auto-close type="is-danger" :active.sync="erroed">データが取得できませんでした</b-notification>
+        <b-notification auto-close type="is-danger" :active.sync="erroed">データが取得できませんでした。再読み込みをお試しください。</b-notification>
       </div>
     </div>
   </div>
@@ -43,11 +43,11 @@ export default {
         },
         {
           name: "twitter:description",
-          content: this.desc
+          content: "ミソシタのカルタを作ったよ。"
         },
         {
           name: "og:description",
-          content: this.desc
+          content: "ミソシタのカルタを作ったよ。"
         },
         {
           name: "og:image",
