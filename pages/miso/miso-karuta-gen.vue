@@ -1,12 +1,12 @@
 <template>
-  <div class="root">
+  <div class="root columns">
     <b-loading :active.sync="isLoading"></b-loading>
-    <div class="container">
+    <div class="conlumn">
       <div class="centered">
         <karuta v-bind:karuta="karuta" ref="karuta_gen"/>
       </div>
     </div>
-    <div class="container">
+    <div  class="column">
       <b-field label="頭文字">
         <b-input v-model="karuta.head" maxlength="1"></b-input>
       </b-field>
@@ -31,7 +31,7 @@
 </template>
 <script>
 import karuta from "~/components/karuta-no-link";
-import firebase from '~/plugins/firebase'
+import firebase from "~/plugins/firebase";
 import domtoimage from "dom-to-image";
 
 export default {
@@ -56,19 +56,21 @@ export default {
       const options = {
         type: "dataURL"
       };
-      this.output = await domtoimage.toPng(el,{height:370,width:370});
+      this.output = await domtoimage.toPng(el, { height: 370, width: 370 });
       await this.upload(this.output);
     },
     async upload(data) {
       const db = firebase.firestore();
       const sRef = firebase.storage().ref();
-      const name = Math.random()
-        .toString(36)
-        .slice(-8)+Math.random()
-        .toString(36)
-        .slice(-8);
+      const name =
+        Math.random()
+          .toString(36)
+          .slice(-8) +
+        Math.random()
+          .toString(36)
+          .slice(-8);
       const fileRef = sRef.child(`misokaruta-image/${name}.png`);
-      this.isLoading=true;
+      this.isLoading = true;
       // Cloud Storageにアップロード
       fileRef
         .putString(data, "data_url")
@@ -85,11 +87,11 @@ export default {
         })
         .then(docRef => {
           console.log(docRef);
-          this.isLoading=false;
-          this.$router.push(`/miso/karutas/${name}`)
+          this.isLoading = false;
+          this.$router.push(`/miso/karutas/${name}`);
         })
         .catch(err => {
-          this.isLoading=false;
+          this.isLoading = false;
           console.error(err);
         });
     }
@@ -97,7 +99,7 @@ export default {
   data() {
     return {
       isNotWritten: false,
-      isLoading:false,
+      isLoading: false,
       output: null,
       images: [
         { src: "/miso-basic.png", text: "ミソシタ" },

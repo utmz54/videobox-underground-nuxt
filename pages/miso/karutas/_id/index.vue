@@ -1,23 +1,39 @@
 <template>
   <div class="root">
     <b-loading :active.sync="isLoading"></b-loading>
-    <div class="container">
-      <div class="centered">
-        <h1>カルタができました。遊んでくれてありがとうございます。</h1>
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h1 class="has-text-centered">カルタができました。遊んでくれてありがとうございます。</h1>
       </div>
     </div>
-    <div class="container">
-      <div class="centered">
-        <karuta v-bind:karuta="karuta"/>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="centered">
+          <karuta v-bind:karuta="karuta"/>
+        </div>
+      </div>
+      <div class="column">
+
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/7QBW67x4-HY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-    <div class="container share-butttons">
-      <div class="centered">
-        <a class="button is-info" :href="twitterlink">
-          <b-icon icon="twitter"></b-icon>
-          <span>Tweet</span>
-        </a>
-        <b-notification auto-close type="is-danger" :active.sync="erroed">データが取得できませんでした。再読み込みをお試しください。</b-notification>
+    <div class="columns is-centered">
+      <div class="column share-butttons is-full">
+        <div class="centered">
+          <a class="button is-info" :href="twitterlink">
+            <b-icon icon="twitter" size="is-small"></b-icon>
+            <span>Tweet</span>
+          </a>
+          <br>
+          <nuxt-link class="button" to="/miso/miso-karuta-gen">
+            <span>カルタを作ってみる</span>
+          </nuxt-link>
+          <b-notification
+            auto-close
+            type="is-danger"
+            :active.sync="erroed"
+          >データが取得できませんでした。再読み込みをお試しください。</b-notification>
+        </div>
       </div>
     </div>
   </div>
@@ -82,9 +98,9 @@ export default {
         .get()
         .then(res => {
           if (res.exists) {
-            return{
-            karuta : res.data().message
-            }
+            return {
+              karuta: res.data().message
+            };
           } else {
             return null;
           }
@@ -136,13 +152,13 @@ export default {
             console.log(res);
 
             this.isLoading = false;
-            this.error=true;
+            this.error = true;
           }
         })
         .catch(ex => {
           console.error(ex);
           this.isLoading = false;
-          this.error=true;
+          this.error = true;
         });
     } catch (ex) {}
   },
