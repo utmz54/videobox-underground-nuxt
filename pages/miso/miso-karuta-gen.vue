@@ -56,7 +56,7 @@ export default {
       const options = {
         type: "dataURL"
       };
-      this.output = await domtoimage.toPng(el);
+      this.output = await domtoimage.toPng(el,{height:370,width:370});
       await this.upload(this.output);
     },
     async upload(data) {

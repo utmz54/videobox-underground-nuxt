@@ -3,7 +3,7 @@
     <b-loading :active.sync="isLoading"></b-loading>
     <div class="container">
       <div class="centered">
-        <h1>カルタができました</h1>
+        <h1>たぶんできました</h1>
       </div>
     </div>
     <div class="container">
@@ -73,20 +73,51 @@ export default {
   method: {
     submit() {}
   },
+  async asyncData({ store, params, error }) {
+    try {
+      const db = firebase.firestore();
+      const name = params.id;
+      const data = db.collection("misokaruta").doc(name);
+      data
+        .get()
+        .then(res => {
+          if (res.exists) {
+            return{
+            karuta : res.data().message
+            }
+          } else {
+            return null;
+          }
+        })
+        .catch(ex => {
+          return null;
+        });
+    } catch (ex) {}
+  },
   computed: {
-      desc(){
-        return "ミソシタのカルタを作ったよ。「"+ this.karuta.text.replace(/\r\n/g," ").replace(/(\n|\r)/g, " ")+"」";
-      },
-      twitterlink(){
-        // 現在のurlをエンコード
-    	var url = "https://videobox-underground.herokuapp.com" + this.$route.path
-    	// ページ文言(タイトルとかdescription) ここではdescriptionを使用
+    desc() {
+      return (
+        "ミソシタのカルタを作ったよ。「" +
+        this.karuta.text.replace(/\r\n/g, " ").replace(/(\n|\r)/g, " ") +
+        "」"
+      );
+    },
+    twitterlink() {
+      // 現在のurlをエンコード
+      var url = "https://videobox-underground.herokuapp.com" + this.$route.path;
+      // ページ文言(タイトルとかdescription) ここではdescriptionを使用
       var txt = encodeURIComponent(this.desc);
       var hashtag = encodeURIComponent("ミソカルタ");
-    	// Twitter用のurl作成 ハッシュタグもtxtを使用
-      return 'https://twitter.com/intent/tweet?text='+ txt + '&hashtags=' + hashtag + '&url=' + url;
-      
-      }
+      // Twitter用のurl作成 ハッシュタグもtxtを使用
+      return (
+        "https://twitter.com/intent/tweet?text=" +
+        txt +
+        "&hashtags=" +
+        hashtag +
+        "&url=" +
+        url
+      );
+    }
   },
   mounted() {
     const db = firebase.firestore();
@@ -105,11 +136,13 @@ export default {
             console.log(res);
 
             this.isLoading = false;
+            this.error=true;
           }
         })
         .catch(ex => {
           console.error(ex);
           this.isLoading = false;
+          this.error=true;
         });
     } catch (ex) {}
   },
@@ -128,7 +161,7 @@ export default {
 };
 </script>
 <style>
-.share-butttons{
+.share-butttons {
   margin-top: 20px;
 }
 .centered {
