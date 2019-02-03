@@ -26,7 +26,8 @@
     "generate": "nuxt generate",
     "build": "nuxt build",
     "start": "nuxt start",
-    "imagemin": "imagemin static-src/* --out-dir=static --plugin=pngquant"
+    "imagemin": "imagemin static-src/* --out-dir=static --plugin=pngquant",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC"
