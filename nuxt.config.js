@@ -1,8 +1,11 @@
 module.exports = {
-    css: [
-      'bulma',
-    ],
+    // css: [
+    //   'bulma',
+    // ],
     link: [
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+JP' }
-    ]
+    ],
+    modules: [
+      ['nuxt-buefy', { /* buefy options */ }]
+   ]
   }

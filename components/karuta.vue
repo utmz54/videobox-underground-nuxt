@@ -15,18 +15,26 @@
 </template>
 <script>
 export default {
-  head () {
+  head() {
     return {
-    link: [
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+JP' }
-    ]
-    } 
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css?family=Noto+Serif+JP"
+        }
+      ]
+    };
   },
   computed: {
     lines() {
-      if(this.karuta.text)
-      return this.karuta.text.split("\n");
-      else [];
+      if (this.karuta.text) {
+        //全角から半角にする
+        const lines = this.karuta.text.replace(/[!-~]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) + 65248);
+          })
+          .split("\n");
+        return lines;
+      } else [];
     },
     src_replaced() {
       if (this.karuta.src) return this.karuta.src;
@@ -141,15 +149,6 @@ export default {
 }
 
 .karuta-line {
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -webkit-align-self: stretch;
-  -ms-flex-item-align: stretch;
-  align-self: stretch;
   margin: 0.2rem;
   -webkit-writing-mode: vertical-rl;
   -ms-writing-mode: tb-rl;
