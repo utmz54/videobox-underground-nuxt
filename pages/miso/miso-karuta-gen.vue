@@ -86,7 +86,7 @@ export default {
         .then(docRef => {
           console.log(docRef);
           this.isLoading=false;
-          this.$router.push(`/miso/generated/${name}`)
+          this.$router.push(`/miso/karutas/${name}`)
         })
         .catch(err => {
           this.isLoading=false;
