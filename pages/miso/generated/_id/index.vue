@@ -3,15 +3,20 @@
     <b-loading :active.sync="isLoading"></b-loading>
     <div class="container">
       <div class="centered">
-        <karuta v-bind:karuta="karuta"/>
+        <h1>カルタができました</h1>
       </div>
     </div>
     <div class="container">
       <div class="centered">
-        <button class="button is-info">
+        <karuta v-bind:karuta="karuta"/>
+      </div>
+    </div>
+    <div class="container share-butttons">
+      <div class="centered">
+        <a class="button is-info" :href="twitterlink">
           <b-icon icon="twitter"></b-icon>
           <span>Tweet</span>
-        </button>
+        </a>
         <b-notification auto-close type="is-danger" :active.sync="erroed">データが取得できませんでした</b-notification>
       </div>
     </div>
@@ -23,43 +28,61 @@ import firebase from "~/plugins/firebase";
 import domtoimage from "dom-to-image";
 
 export default {
-  head(){
-    return{
-      meta:[
+  head() {
+    return {
+      meta: [
         // OGP共通
-            {
-            name: 'og:url',
-            content: 'https://videobox-underground.netlify.com/' + this.$route.path
-            },
-            {
-            name: 'og:title',
-            content: "ミソシタのカルタ　ミソカルタ"
-            },
-            {
-            name: 'og:description',
-            content: this.karuta.text,
-            },
-            {
-            name: 'og:image',
-            content: `https://firebasestorage.googleapis.com/v0/b/videobox-underground.appspot.com/o/${encodeURIComponent(`misokaruta-image/${this.$route.params.id}.png`)}?alt=media`
-            },
-            {
-            name: 'og:type',
-            content: 'article'
-            },
-            // Twitter
-            {
-              name: 'twitter:card',
-              content: 'summary'
-            },
+        {
+          name: "og:url",
+          content:
+            "https://videobox-underground.netlify.com" + this.$route.path
+        },
+        {
+          name: "og:title",
+          content: "ミソカルタ"
+        },
+        {
+          name: "og:description",
+          content: this.desc
+        },
+        {
+          name: "og:image",
+          content: `https://firebasestorage.googleapis.com/v0/b/videobox-underground.appspot.com/o/${encodeURIComponent(
+            `misokaruta-image/${this.$route.params.id}.png`
+          )}?alt=media`
+        },
+        {
+          name: "og:type",
+          content: "article"
+        },
+        // Twitter
+        {
+          name: "twitter:card",
+          content: "summary"
+        }
       ]
-    }
+    };
   },
   components: {
     karuta
   },
   method: {
     submit() {}
+  },
+  computed: {
+      desc(){
+        return "ミソシタのカルタを作ったよ。「"+ this.karuta.text.replace(/\r\n/g," ").replace(/(\n|\r)/g, " ")+"」";
+      },
+      twitterlink(){
+        // 現在のurlをエンコード
+    	var url = "https://videobox-underground.netlify.com" + this.$route.path
+    	// ページ文言(タイトルとかdescription) ここではdescriptionを使用
+      var txt = encodeURIComponent(this.desc);
+      var hashtag = encodeURIComponent("ミソカルタ");
+    	// Twitter用のurl作成 ハッシュタグもtxtを使用
+      return 'https://twitter.com/intent/tweet?text='+ txt + '&hashtags=' + hashtag + '&url=' + url;
+      
+      }
   },
   mounted() {
     const db = firebase.firestore();
@@ -76,7 +99,7 @@ export default {
             this.isLoading = false;
           } else {
             console.log(res);
-            
+
             this.isLoading = false;
           }
         })
@@ -101,6 +124,9 @@ export default {
 };
 </script>
 <style>
+.share-butttons{
+  margin-top: 20px;
+}
 .centered {
   display: -ms-flexbox;
   display: -webkit-flex;

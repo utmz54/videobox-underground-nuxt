@@ -19,8 +19,7 @@
         </b-select>
       </b-field>
       <button class="button is-info" @click="submit">
-        <b-icon icon="twitter"></b-icon>
-        <span>Tweet</span>
+        <span>保存する</span>
       </button>
       <b-notification
         auto-close

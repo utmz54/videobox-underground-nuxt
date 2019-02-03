@@ -1,4 +1,5 @@
 <template>
+<div class="karuta-padding">
   <div class="karuta-container">
     <div class="karuta-root">
       <div class="karuta-head">{{karuta.head}}</div>
@@ -12,6 +13,7 @@
       <img class="karuta-img" :src="src_replaced">
     </span>
   </div>
+      </div>
 </template>
 <script>
 export default {
@@ -46,6 +48,14 @@ export default {
 </script>
 
 <style>
+.karuta-padding{
+    height: 370px;
+  width: 370px;
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-top:6px;
+  padding-bottom:6px;
+}
 .karuta-container {
   height: 364px;
   width: 260px;
