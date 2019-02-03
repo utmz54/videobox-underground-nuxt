@@ -35,11 +35,15 @@ export default {
         {
           name: "og:url",
           content:
-            "https://videobox-underground.netlify.com" + this.$route.path
+            "https://videobox-underground.herokuapp.com/" + this.$route.path
         },
         {
           name: "og:title",
           content: "ミソカルタ"
+        },
+        {
+          name: "twitter:description",
+          content: this.desc
         },
         {
           name: "og:description",
@@ -75,7 +79,7 @@ export default {
       },
       twitterlink(){
         // 現在のurlをエンコード
-    	var url = "https://videobox-underground.netlify.com" + this.$route.path
+    	var url = "https://videobox-underground.herokuapp.com" + this.$route.path
     	// ページ文言(タイトルとかdescription) ここではdescriptionを使用
       var txt = encodeURIComponent(this.desc);
       var hashtag = encodeURIComponent("ミソカルタ");
