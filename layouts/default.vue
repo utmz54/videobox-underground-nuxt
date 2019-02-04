@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
+  <section class="hero is-default is-bold">
+    <div class="hero-head">
     <HeadNav/>
-    <section class="hero">
+    </div>
       <div class="hero-body">
         <div class="container">
           <nuxt/>
         </div>
       </div>
-    </section>
-  </div>
+  </section>
 </template>
 <script>
 import HeadNav from "~/components/head";

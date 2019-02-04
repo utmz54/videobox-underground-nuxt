@@ -1,4 +1,5 @@
 <template>
+<div 
 <div class="karuta-padding">
   <div class="karuta-container">
     <div class="karuta-root">
@@ -7,6 +8,7 @@
         <div class="karuta-text">
           <p class="karuta-line" v-for="line in lines">{{line}}</p>
         </div>
+      </div>
       </div>
     </div>
     <span>

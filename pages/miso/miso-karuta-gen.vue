@@ -1,10 +1,8 @@
 <template>
-  <div class="root columns">
+  <div class="root columns is-centered is-desktop">
     <b-loading :active.sync="isLoading"></b-loading>
     <div class="conlumn">
-      <div class="centered">
         <karuta v-bind:karuta="karuta" ref="karuta_gen"/>
-      </div>
     </div>
     <div  class="column">
       <b-field label="頭文字">
@@ -19,7 +17,7 @@
         </b-select>
       </b-field>
       <button class="button is-info" @click="submit">
-        <span>保存する</span>
+        <span>共有する</span>
       </button>
       <b-notification
         auto-close

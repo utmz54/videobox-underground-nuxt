@@ -3,7 +3,6 @@
     <b-loading :active.sync="isLoading"></b-loading>
     <div class="columns is-centered">
       <div class="column is-full">
-        <h1 class="has-text-centered">カルタができました。遊んでくれてありがとうございます。</h1>
       </div>
     </div>
     <div class="columns is-centered">
