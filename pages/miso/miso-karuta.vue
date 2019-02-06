@@ -279,7 +279,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .root {
   display: -ms-flexbox;
   display: -webkit-flex;

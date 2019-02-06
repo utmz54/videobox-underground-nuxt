@@ -1,10 +1,10 @@
 <template>
-  <div class="root columns is-centered is-desktop">
+  <div class="root columns is-centered is-multiline ">
     <b-loading :active.sync="isLoading"></b-loading>
-    <div class="conlumn">
+    <div class="conlumn ">
         <karuta v-bind:karuta="karuta" ref="karuta_gen"/>
     </div>
-    <div  class="column">
+    <div  class="column  is-narrow">
       <b-field label="頭文字">
         <b-input v-model="karuta.head" maxlength="1"></b-input>
       </b-field>
@@ -115,7 +115,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .centered {
   display: -ms-flexbox;
   display: -webkit-flex;

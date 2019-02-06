@@ -1,22 +1,18 @@
 <template>
   <div class="root">
     <b-loading :active.sync="isLoading"></b-loading>
-    <div class="columns is-centered">
+    <div class="columns is-centered is-multiline">
       <div class="column is-full">
       </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
+      <div class="column ">
         <div class="centered">
           <karuta v-bind:karuta="karuta"/>
         </div>
       </div>
-      <div class="column">
-
+<div class="column centered">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/7QBW67x4-HY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-    <div class="columns is-centered">
       <div class="column share-butttons is-full">
         <div class="centered">
           <a class="button is-info" :href="twitterlink">
@@ -33,7 +29,6 @@
             :active.sync="erroed"
           >データが取得できませんでした。再読み込みをお試しください。</b-notification>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -175,7 +170,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .share-butttons {
   margin-top: 20px;
 }
