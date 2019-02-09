@@ -17,7 +17,7 @@ export default {
     return {
       cards: [
           {
-          title: "ひとり相撲",
+          title: "ひとり博打",
           subtitle: "色川武大",
           quotation:
             "私はなぜかいつも悔いている。道を歩いているとしょっちゅう砂漠にぶつかるのである。"+
