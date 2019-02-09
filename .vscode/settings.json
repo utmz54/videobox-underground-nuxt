@@ -1,0 +1,4 @@
+{
+    "pasteImage.insertPattern": "${imageSyntaxPrefix}/${currentFileNameWithoutExt}/${imageFileName}${imageSyntaxSuffix}",
+    "pasteImage.path": "../static/${currentFileNameWithoutExt}"
+}

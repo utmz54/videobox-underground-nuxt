@@ -16,7 +16,11 @@ module.exports = {
     ],
   },
     modules: [
-    ['nuxt-buefy', { /* buefy options */ }]
+    ['nuxt-buefy', { /* buefy options */ }],
+    ['@nuxtjs/markdownit',{
+      injected: true,
+      breaks: true,linkify: true,
+    }]
   ],
   plugins: [
     "~/plugins/firebase"

@@ -31,7 +31,7 @@
 export default {
   data() {
     return {
-      menuActive: true
+      menuActive: false
     };
   },
   methods: {

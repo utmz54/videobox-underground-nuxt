@@ -16,6 +16,13 @@
           <option v-for="option in images" :value="option.src" :key="option.src">{{ option.text }}</option>
         </b-select>
       </b-field>
+        <b-field label="動画・音源指定（オプション）">
+        <b-select placeholder="プラットホーム" v-model="videolink">
+          <option value="none">------</option>
+          <option value="youtube">Youtube</option>
+          <option value="soundcloud">SoundCloud</option>
+        </b-select>
+      </b-field>
       <button class="button is-info" @click="submit">
         <span>共有する</span>
       </button>
@@ -96,6 +103,7 @@ export default {
   },
   data() {
     return {
+      videolink:"none",
       isNotWritten: false,
       isLoading: false,
       output: null,
