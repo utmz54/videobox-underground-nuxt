@@ -10,7 +10,7 @@
         </div>
       </div>
 <div class="column centered">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/7QBW67x4-HY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" :src="youtube_src" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
       <div class="column share-butttons is-full">
@@ -107,7 +107,7 @@ export default {
   computed: {
     desc() {
       return (
-        "ミソシタのカルタを作ったよ。「" +
+        "「" +
         this.karuta.text.replace(/\r\n/g, " ").replace(/(\n|\r)/g, " ") +
         "」"
       );
@@ -127,6 +127,15 @@ export default {
         "&url=" +
         url
       );
+    },
+    youtube_src(){
+      if(!this.karuta.videolink)
+      return "https://www.youtube.com/embed/7QBW67x4-HY";
+      if(this.karuta.videolink==="none"){
+        return "https://www.youtube.com/embed/7QBW67x4-HY";
+      }else{
+        return "https://www.youtube.com/embed/"+this.karuta.videolink
+      }
     }
   },
   mounted() {

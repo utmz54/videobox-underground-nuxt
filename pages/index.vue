@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <div class="card is-shady">
+      <!-- <div class="card is-shady">
         <div class="card-content">
           <div class="content">
             <nuxt-link to="/likes/">
@@ -30,7 +30,7 @@
             <p>好きなものについてかいてる</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
