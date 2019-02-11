@@ -53,11 +53,11 @@ export default {
         },
         {
           name: "twitter:description",
-          content: "ミソシタのカルタを作ったよ。"
+          content: "ミソシタのカルタ。"
         },
         {
           name: "og:description",
-          content: "ミソシタのカルタを作ったよ。"
+          content: "ミソシタのカルタ。"
         },
         {
           name: "og:image",
@@ -72,7 +72,7 @@ export default {
         // Twitter
         {
           name: "twitter:card",
-          content: "summary"
+          content: "summary_large_image"
         }
       ]
     };
@@ -117,7 +117,7 @@ export default {
       var url = "https://videobox-underground.herokuapp.com" + this.$route.path;
       // ページ文言(タイトルとかdescription) ここではdescriptionを使用
       var txt = encodeURIComponent(this.desc);
-      var hashtag = encodeURIComponent("ミソカルタ");
+      var hashtag = encodeURIComponent("ミソシタ");
       // Twitter用のurl作成 ハッシュタグもtxtを使用
       return (
         "https://twitter.com/intent/tweet?text=" +

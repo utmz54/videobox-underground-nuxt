@@ -1,21 +1,21 @@
 <template>
-<div 
-<div class="karuta-padding">
-  <div class="karuta-container">
-    <div class="karuta-root">
-      <div class="karuta-head">{{karuta.head}}</div>
-      <div class="karuta-body">
-        <div class="karuta-text">
-          <p class="karuta-line" v-for="line in lines">{{line}}</p>
+  <div>
+    <div class="karuta-padding">
+      <div class="karuta-container">
+        <div class="karuta-root">
+          <div class="karuta-head">{{karuta.head}}</div>
+          <div class="karuta-body">
+            <div class="karuta-text">
+              <p class="karuta-line" v-for="line in lines">{{line}}</p>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
+      <span>
+        <img class="karuta-img" :src="src_replaced">
+      </span>
     </div>
-    <span>
-      <img class="karuta-img" :src="src_replaced">
-    </span>
   </div>
-      </div>
 </template>
 <script>
 export default {
@@ -33,7 +33,8 @@ export default {
     lines() {
       if (this.karuta.text) {
         //全角から半角にする
-        const lines = this.karuta.text.replace(/[!-~]/g, function(s) {
+        const lines = this.karuta.text
+          .replace(/[!-~]/g, function(s) {
             return String.fromCharCode(s.charCodeAt(0) + 65248);
           })
           .split("\n");
@@ -50,13 +51,13 @@ export default {
 </script>
 
 <style>
-.karuta-padding{
-    height: 370px;
+.karuta-padding {
+  height: 370px;
   width: 370px;
   padding-left: 56px;
   padding-right: 56px;
-  padding-top:6px;
-  padding-bottom:6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .karuta-container {
   height: 364px;
