@@ -4,6 +4,16 @@
       <div class="card is-shady">
         <div class="card-content">
           <div class="content">
+            <nuxt-link to="/miso/topics">
+              <h4>最近のミソシタ</h4>
+            </nuxt-link>
+            <p>ミソシタの情報まとめ（気が向いたら更新）</p>
+          </div>
+        </div>
+      </div>
+      <div class="card is-shady">
+        <div class="card-content">
+          <div class="content">
             <nuxt-link to="/miso/miso-karuta">
               <h4>ミソカルタ</h4>
             </nuxt-link>
@@ -30,7 +40,7 @@
             <p>好きなものについてかいてる</p>
           </div>
         </div>
-      </div> -->
+      </div>-->
     </div>
   </div>
 </template>
