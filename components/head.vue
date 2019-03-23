@@ -20,6 +20,7 @@
 
       <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{ 'is-active': menuActive }">
         <div class="navbar-start">
+          <nuxt-link class="navbar-item" to="/miso/topics">最近のミソシタ</nuxt-link>
           <nuxt-link class="navbar-item" to="/miso/miso-karuta">ミソカルタ</nuxt-link>
           <nuxt-link class="navbar-item" to="/miso/miso-karuta-gen">ミソカルタメーカー（テスト）</nuxt-link>
         </div>

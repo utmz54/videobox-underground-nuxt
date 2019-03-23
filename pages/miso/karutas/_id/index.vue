@@ -10,7 +10,10 @@
         </div>
       </div>
 <div class="column centered">
-          <iframe width="560" height="315" :src="youtube_src" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="320" height="200" :src="youtube_src" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    <div class="column centered">
+          <iframe width="320" height="200" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/285851567&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
       </div>
     </div>
       <div class="column share-butttons is-full">

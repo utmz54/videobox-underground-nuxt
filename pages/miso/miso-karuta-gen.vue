@@ -1,10 +1,10 @@
 <template>
-  <div class="root columns is-centered is-multiline">
+  <div class="root columns is-centered is-multiline is-desktop">
     <b-loading :active.sync="isLoading"></b-loading>
-    <div class="conlumn">
+    <div class="column">
       <karuta v-bind:karuta="karuta" ref="karuta_gen"/>
     </div>
-    <div class="column is-narrow">
+    <div class="column">
       <b-field label="頭文字">
         <b-input v-model="karuta.head" maxlength="1"></b-input>
       </b-field>
@@ -16,8 +16,15 @@
           <option v-for="option in images" :value="option.src" :key="option.src">{{ option.text }}</option>
         </b-select>
       </b-field>
-      <b-field label="動画指定（オプション）">
-        <b-select placeholder="プラットホーム" v-model="karuta.videolink">
+      <b-field label="音源指定">
+        <b-select placeholder="プラットホーム" v-model="karuta.isyoutube">
+          <option value="none">------</option>
+          <option value="youtube">Youtube</option>
+          <option value="soundcloud">SoundCloud</option>
+        </b-select>
+      </b-field>
+      <b-field v-if="karuta.isyoutube==='youtube'" label="動画指定（オプション）">
+        <b-select v-model="karuta.videolink">
           <option value="none">------</option>
           <option
             v-for="video in videos"
@@ -26,16 +33,31 @@
           >{{video.title}}</option>
         </b-select>
       </b-field>
+      <b-field v-if="karuta.isyoutube==='soundcloud'" label="音源指定（オプション）">
+        <b-select v-model="karuta.videolink">
+          <option value="none">------</option>
+          <option v-for="sc in soundcoud_1" :value="sc.href" v-bind:key="sc.title">{{sc.title}}</option>
+        </b-select>
+      </b-field>
       <button class="button is-info" @click="submit">
         <span>共有する</span>
       </button>
+      <br>
+      <iframe
+        v-if="karuta.isyoutube==='youtube'"
+        width="100%"
+        height="240"
+        :src="youtube_src"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
       <b-notification
         auto-close
         type="is-danger"
         :active.sync="isNotWritten"
       >入力欄が空欄です。本文と頭文字の入力欄をお確かめください。</b-notification>
     </div>
-    <iframe width="560" height="315" :src="youtube_src" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </template>
 <script>
@@ -47,12 +69,12 @@ export default {
   components: {
     karuta
   },
-  computed:{
-    youtube_src(){
-      if(this.karuta.videolink==="none"){
+  computed: {
+    youtube_src() {
+      if (this.karuta.videolink === "none") {
         return "https://www.youtube.com/embed/7QBW67x4-HY";
-      }else{
-        return "https://www.youtube.com/embed/"+this.karuta.videolink
+      } else {
+        return "https://www.youtube.com/embed/" + this.karuta.videolink;
       }
     }
   },
@@ -130,7 +152,8 @@ export default {
         text: "",
         src: "/miso-old.png",
         href: "#",
-        videolink:"none"
+        videolink: "none",
+        isyoutube: "none"
       },
       videos: [
         { title: "『ミソシタ#38』ネネコ隊長", href: "PZTW6DNrypc" },
@@ -243,6 +266,164 @@ export default {
         { title: "『ミソシタ#3』相棒", href: "krjctGTc2hY" },
         { title: "『ミソシタ#2』生と死について", href: "-oLDy9I5aXw" },
         { title: "『ミソシタ#1』", href: "u3sSZyv_1xk" }
+      ],
+      soundcoud_1: [
+        { href: "/user-504886463/boy", title: "火の玉ブリーフBOY" },
+
+        { href: "/user-504886463/vav4tedlkgul", title: "亀に乗って" },
+
+        { href: "/user-504886463/ypsxy0wps9qe", title: "ちんのポー" },
+
+        { href: "/user-504886463/after-boutique", title: "After Boutique" },
+
+        { href: "/user-504886463/the-time", title: "The Time" },
+
+        { href: "/user-504886463/lb9r74ecthjs", title: "アヒージョ" },
+
+        { href: "/user-504886463/ssxzicufjd4t", title: "海" },
+
+        { href: "/user-504886463/neo-moon", title: "NEO MOON" },
+
+        { href: "/user-504886463/odkoku", title: "odkoku" },
+
+        { href: "/user-504886463/uzukumaria", title: "UZUKUMARIA" },
+
+        { href: "/user-504886463/omotenashi", title: "OMOTENASHI" },
+
+        { href: "/user-504886463/girs-bar", title: "girlsbar(((" },
+
+        {
+          href: "/user-504886463/ciin2fip6qzd",
+          title: "おじさんとお風呂に入ろう"
+        },
+
+        { href: "/user-504886463/blizzard-cross", title: "Blizzard Cross" },
+
+        { href: "/user-504886463/bero", title: "夕暮れ公園をUROTSUKUカミー" },
+
+        { href: "/user-504886463/da-shi-te", title: "DA.SHI.TE" },
+
+        {
+          href: "/user-504886463/dark-schneider-ds-djmix",
+          title: "Dark Schneider DS DJmix"
+        },
+
+        {
+          href: "/user-504886463/t5xruukqx2zh",
+          title: "初期衝動が死んだ夜から"
+        },
+
+        { href: "/user-504886463/7000a", title: "7000です" },
+
+        { href: "/user-504886463/o9ysgjqllskf", title: "暗闇とポニーテール" },
+
+        { href: "/user-504886463/robakun", title: "ROBAKUN" },
+
+        { href: "/user-504886463/time", title: "TIME" },
+
+        { href: "/user-504886463/u2p4yggx8zgp", title: "裸の千羽鶴" },
+
+        { href: "/user-504886463/end-video", title: "End Video" },
+
+        { href: "/user-504886463/x", title: "おしり×おっぱい対談" },
+
+        { href: "/user-504886463/redmoon", title: "RED MOON" },
+
+        { href: "/user-504886463/education", title: "Education" },
+
+        { href: "/user-504886463/ycv0ng19rmqo", title: "リキュール" },
+
+        { href: "/user-504886463/yyc0pnysh8zn", title: "ごろごろくん" },
+
+        { href: "/user-504886463/the-box", title: "THE BOX" },
+
+        {
+          href: "/user-504886463/ass-walking",
+          title: "Ass walking 〜ケツ歩き〜"
+        },
+
+        { href: "/user-504886463/ninjya", title: "Ninjya" },
+
+        {
+          href: "/user-504886463/vicgntsulbjz",
+          title: "ブリーフボーイズ インターネット"
+        },
+
+        { href: "/user-504886463/briefsbriefs", title: "ぶりーふ ぶりーふ" },
+
+        { href: "/user-504886463/shining-id", title: "Shining ID" },
+
+        { href: "/user-504886463/creature-head", title: "Creature head" },
+
+        { href: "/user-504886463/zibon", title: "zibon" },
+
+        {
+          href: "/user-504886463/poemcorefile1",
+          title: "スケベフェス常連 持田すしお  【ポエムコア人物ファイル#1】"
+        },
+
+        { href: "/user-504886463/bell", title: "BELL" },
+
+        { href: "/user-504886463/naked-kite", title: "Naked Kite" },
+
+        { href: "/user-504886463/forever", title: "Forever" },
+
+        { href: "/user-504886463/lostshoes", title: "Lost shoes" },
+
+        { href: "/user-504886463/infbhw0pjqnz", title: "ポンティー" },
+
+        { href: "/user-504886463/on-the-earth", title: "On The Earth" },
+
+        {
+          href: "/user-504886463/vs-1",
+          title: "ヘルボーイVSアンダーグランドババア"
+        },
+
+        { href: "/user-504886463/2002a", title: "2002" },
+
+        {
+          href: "/user-504886463/milking-in-the-sky-1",
+          title: "milking in the sky #1"
+        },
+
+        { href: "/user-504886463/n18yaaaw2463", title: "スパークリングワイン" },
+
+        { href: "/user-504886463/45oomclg1too", title: "鬼達" },
+
+        { href: "/user-504886463/6qnjuj6izh3g", title: "キャミソール" },
+
+        { href: "/user-504886463/e9pcmhlq5kcd", title: "ベアナックル" },
+
+        { href: "/user-504886463/aoazsb0lxely", title: "ショック" },
+
+        { href: "/user-504886463/ivtwam4l7uor", title: "タイガー" },
+
+        { href: "/user-504886463/9y0ktu3qj4e9", title: "サイン" },
+
+        { href: "/user-504886463/sl4skqstf6o4", title: "壊滅的アナグラム" },
+
+        { href: "/user-504886463/naked-hero", title: "Naked hero ~全裸勇者~" },
+
+        { href: "/user-504886463/briefs-night", title: "Briefs Night" },
+
+        { href: "/user-504886463/feusu-co", title: "feusu co" },
+
+        { href: "/user-504886463/3famnuvl9cdv", title: "パンよりもエロ本" },
+
+        { href: "/user-504886463/gavanya-fev", title: "gavanya fev" },
+
+        { href: "/user-504886463/night-brain", title: "Night Brain" },
+
+        { href: "/user-504886463/head-shot-dance", title: "HEAD SHOT DANCE" },
+
+        {
+          href: "/user-504886463/6hxiuy07befw",
+          title: "スパゲッティーパーティー"
+        },
+
+        { href: "/user-504886463/7tfgzsuosyl7", title: "ぬるぬるおじさん" },
+
+        { href: "/user-504886463/xvifxoyqrpbo", title: "労働と交差する路地" }
       ]
     };
   }
