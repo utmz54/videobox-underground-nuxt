@@ -3,18 +3,20 @@
     <section>
       <h1 class="title">最近のミソシタ</h1>
     </section>
-    <div class="columns">
+    <div class="columns is-desktop">
       <div class="column">
         <a href="#album2">
           <section>
             <div class="card">
-              <div class="card-image">
-                <figure class="image">
-                  <img src="~/assets/miso_second.jpg" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="card-content">
                 <div class="media">
+                  <div class="media-left">
+                    <div class="card-image">
+                      <figure class="image is-128x128">
+                        <img src="~/assets/miso_second.jpg" alt="Placeholder image">
+                      </figure>
+                    </div>
+                  </div>
                   <div class="media-content">
                     <p class="title is-4">2ndアルバム</p>
                     <p class="subtitle is-6">4/17 リリース決定</p>
@@ -29,13 +31,15 @@
         <a href="#movie">
           <section>
             <div class="card">
-              <div class="card-image">
-                <figure class="image">
-                  <img src="~/assets/virtualotoko.jpg" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="card-content">
                 <div class="media">
+                  <div class="media-left">
+                    <div class="card-image">
+                      <figure class="image is-128x128">
+                        <img src="~/assets/virtualotoko.jpg" alt="Placeholder image">
+                      </figure>
+                    </div>
+                  </div>
                   <div class="media-content">
                     <p class="title is-4">ミソシタ監督の映画</p>
                     <p class="subtitle is-6">4/5～4/11 劇場公開</p>
@@ -50,13 +54,15 @@
         <a href="#misopa2">
           <section>
             <div class="card">
-              <div class="card-image">
-                <figure class="image">
-                  <img src="~/assets/misopa2nd.jpg" alt="Placeholder image">
-                </figure>
-              </div>
               <div class="card-content">
                 <div class="media">
+                  <div class="media-left">
+                    <div class="card-image">
+                      <figure class="image is-128x128">
+                        <img src="~/assets/misopa2nd.jpg" alt="Placeholder image">
+                      </figure>
+                    </div>
+                  </div>
                   <div class="media-content">
                     <p class="title is-4">ミソパーティ</p>
                     <p class="subtitle is-6">東京・大阪・名古屋で開催</p>
